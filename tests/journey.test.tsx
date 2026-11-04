@@ -117,4 +117,19 @@ describe('real story interface', () => {
     expect(screen.getByRole('heading', { name: /The plot twist.*It was always you/i })).toBeTruthy();
     expect(document.activeElement).toBe(screen.getByRole('main'));
   });
+
+  it('lets the reader turn directly between chapters without returning to the archive', async () => {
+    bookmark('chapters', { entered: true, accepted: true, quizComplete: true, opened: [1] });
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(screen.getByRole('button', { name: /The Obsession/i }));
+    expect(screen.getByRole('heading', { name: 'The Obsession' })).toBeTruthy();
+
+    await user.click(screen.getByRole('button', { name: /CH\. II/i }));
+    expect(screen.getByRole('heading', { name: 'The Temptation' })).toBeTruthy();
+
+    await user.click(screen.getByRole('button', { name: 'CH. I' }));
+    expect(screen.getByRole('heading', { name: 'The Obsession' })).toBeTruthy();
+  });
 });

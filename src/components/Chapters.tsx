@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Check, Crown, LockKeyhole, Sparkles, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Crown, LockKeyhole, Sparkles, X } from 'lucide-react';
 import { chapterContent } from '../story';
 import SafeImage from './SafeImage';
 import './chapters.css';
+import './chapter-navigation.css';
 
 type Props = { opened: number[]; onOpen: (id: number) => void; onTruth: () => void };
 
@@ -21,16 +22,27 @@ const marks = ['✦', '☽', '♛', '❦', '✧', '✶'];
 export default function Chapters({ opened, onOpen, onTruth }: Props) {
   const [active, setActive] = useState<number | null>(null);
   const [chosen, setChosen] = useState<number | null>(null);
+  const [turnDirection, setTurnDirection] = useState(1);
   const reduce = useReducedMotion();
   const complete = opened.length === 6;
   const remaining = 6 - opened.length;
   const chapter = active ? chapterContent.find(item => item.id === active) : undefined;
+  const previousChapter = chapter ? chapterContent.find(item => item.id === chapter.id - 1) : undefined;
+  const nextChapter = chapter ? chapterContent.find(item => item.id === chapter.id + 1) : undefined;
 
   useEffect(() => { setChosen(null); }, [active]);
 
   function select() {
     if (!chapter || chosen === null) return;
     onOpen(chapter.id);
+  }
+
+  function turnChapter(direction: 1 | -1) {
+    if (!chapter) return;
+    const destination = chapter.id + direction;
+    if (destination < 1 || destination > chapterContent.length) return;
+    setTurnDirection(direction);
+    setActive(destination);
   }
 
   return <section className={`chapters-section ${complete ? 'chapters-complete' : ''}`} id="chapters">
@@ -67,16 +79,17 @@ export default function Chapters({ opened, onOpen, onTruth }: Props) {
     <p className="chapter-footnote">The final door waits for every chapter to be read.</p>
 
     <AnimatePresence>{chapter && <motion.div className={`chapter-reader-backdrop reader-theme-${chapter.id}`} role="presentation" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onMouseDown={() => setActive(null)}>
-      <motion.article className="chapter-reader" role="dialog" aria-modal="true" aria-labelledby="reader-title" initial={{opacity:0,y:reduce?0:36,rotateX:reduce?0:-7}} animate={{opacity:1,y:0,rotateX:0}} exit={{opacity:0,y:reduce?0:22,rotateX:reduce?0:5}} transition={{duration:reduce?0:.46, ease:[.16,1,.3,1]}} onMouseDown={event => event.stopPropagation()}>
+      <AnimatePresence mode="wait"><motion.article key={chapter.id} className="chapter-reader" role="dialog" aria-modal="true" aria-labelledby="reader-title" initial={{opacity:0,x:reduce?0:42*turnDirection,y:reduce?0:18,rotateY:reduce?0:turnDirection*-8}} animate={{opacity:1,x:0,y:0,rotateY:0}} exit={{opacity:0,x:reduce?0:-42*turnDirection,y:reduce?0:-12,rotateY:reduce?0:turnDirection*8}} transition={{duration:reduce?0:.44, ease:[.16,1,.3,1]}} onMouseDown={event => event.stopPropagation()}>
         <span className="reader-sunburst" aria-hidden="true"/>
         <button className="reader-close" onClick={() => setActive(null)} aria-label="Close chapter"><X size={18}/></button>
         <div className="reader-heading"><span className="eyebrow">CHAPTER {chapter.roman} · {chapter.subtitle}</span><h2 id="reader-title">{chapter.title}</h2><span className="reader-ornament">{marks[chapter.id - 1]}</span></div>
         {chapter.id === 3 && <SafeImage src="/photos/burgundy-portrait.jpeg" alt="Shalu in a burgundy outfit" className="reader-photo"/>}
         {chapter.id === 4 && <SafeImage src="/photos/floral-portrait.jpeg" alt="Shalu in a floral dress" className="reader-photo"/>}
         <p className="reader-body">{chapter.body}</p>
-        {opened.includes(chapter.id) ? <motion.div initial={{opacity:0,y:reduce?0:8}} animate={{opacity:1,y:0}} className="reader-reveal"><Check size={16}/><p>{chapter.reveal}</p></motion.div> : <div className="chapter-choice"><span>{prompts[chapter.id].prompt}</span><div>{prompts[chapter.id].choices.map((choice, index) => <button key={choice} className={chosen === index ? 'chosen' : ''} onClick={() => setChosen(index)} aria-pressed={chosen === index}>{choice}<ArrowRight size={14}/></button>)}</div>{chosen !== null && <motion.button initial={{opacity:0,y:reduce?0:8}} animate={{opacity:1,y:0}} className="primary-button unlock-chapter" onClick={select}>REVEAL THIS PAGE <Sparkles size={14}/></motion.button>}</div>}
+        {opened.includes(chapter.id) ? <><motion.div initial={{opacity:0,y:reduce?0:8}} animate={{opacity:1,y:0}} className="reader-reveal"><Check size={16}/><p>{chapter.reveal}</p></motion.div>{nextChapter && <button className="turn-page-button" onClick={() => turnChapter(1)}>TURN TO CHAPTER {nextChapter.roman} <span>{nextChapter.title}</span><ArrowRight size={15}/></button>}</> : <div className="chapter-choice"><span>{prompts[chapter.id].prompt}</span><div>{prompts[chapter.id].choices.map((choice, index) => <button key={choice} className={chosen === index ? 'chosen' : ''} onClick={() => setChosen(index)} aria-pressed={chosen === index}>{choice}<ArrowRight size={14}/></button>)}</div>{chosen !== null && <motion.button initial={{opacity:0,y:reduce?0:8}} animate={{opacity:1,y:0}} className="primary-button unlock-chapter" onClick={select}>REVEAL THIS PAGE <Sparkles size={14}/></motion.button>}</div>}
+        <nav className="reader-navigation" aria-label="Chapter navigation"><button disabled={!previousChapter} onClick={() => turnChapter(-1)}><ArrowLeft size={14}/><span>{previousChapter ? `CH. ${previousChapter.roman}` : 'BEGINNING'}</span></button><span>PAGE {String(chapter.id).padStart(2, '0')} / 06</span><button disabled={!nextChapter} onClick={() => turnChapter(1)}><span>{nextChapter ? `CH. ${nextChapter.roman}` : 'THE TRUTH'}</span><ArrowRight size={14}/></button></nav>
         <div className="reader-footer"><span>THE FORBIDDEN CHAPTER</span><span>{opened.includes(chapter.id) ? 'MARKED AS READ' : 'A SEALED PAGE'}</span></div>
-      </motion.article>
+      </motion.article></AnimatePresence>
     </motion.div>}</AnimatePresence>
   </section>;
 }
