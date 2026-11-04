@@ -1,7 +1,7 @@
 /** All personal story copy lives here. Keep memories and promises true to you. */
 export const story = {
   recipient: 'Shalu Mishra',
-  author: 'misstake',
+  author: 'solnyshko',
   birthday: '2026-11-24T00:00:00+05:30',
   openingQuote: [
     'Every story has a beginning.',
@@ -147,6 +147,6 @@ export const letter = {
     'Happy birthday, Shalu. Thank you for being the reason I wanted to make something this thoughtful, this theatrical, and this honestly affectionate. You are welcome to judge the plot, the pacing, and my questionable attempt at mystery. Just be kind to the last page. That is where I stopped trying to sound like a novel and started sounding like myself.',
   ],
   closing: '— Yours, in every unfinished chapter,',
-  signature: 'misstake',
+  signature: 'solnyshko',
   finalLine: 'Of all the words I could have ended with, I wanted yours to be the name that stayed.',
 };

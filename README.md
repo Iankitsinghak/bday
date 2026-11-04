@@ -1,6 +1,6 @@
 # HER — The Forbidden Chapter
 
-A private-feeling, interactive birthday story for **Shalu Mishra**, by **misstake**, for **24 November 2026**. Built with React, TypeScript, Vite, Tailwind CSS, Framer Motion, and Lucide React. It is a static website and needs no backend or API keys.
+A private-feeling, interactive birthday story for **Shalu Mishra**, by **solnyshko**, for **24 November 2026**. Built with React, TypeScript, Vite, Tailwind CSS, Framer Motion, and Lucide React. It is a static website and needs no backend or API keys.
 
 ## Run locally
 
