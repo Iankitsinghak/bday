@@ -77,11 +77,40 @@
     radial-gradient(ellipse at 65% 0, #a57c4133 0, transparent 60%),
     linear-gradient(112deg, #c6a56e, #e5cf9f 13%, #ead7af 46%, #ddc293 80%, #bb945e);
 }
+
+/* A love letter rescued from the edge of the fire. Keep the ink area warm and clear. */
+.parchment {
+  filter: sepia(0.16) contrast(1.04);
+  background:
+    radial-gradient(ellipse at 1% 4%, #26110fe0 0, #482319a8 2.2%, transparent 8%),
+    radial-gradient(ellipse at 99% 7%, #281310dc 0, #57302199 2%, transparent 8%),
+    radial-gradient(ellipse at 0% 95%, #25100fe0 0, #61301fa1 2.5%, transparent 9%),
+    radial-gradient(ellipse at 100% 96%, #28120fe0 0, #59301e9c 2.3%, transparent 9%),
+    radial-gradient(ellipse at 20% 28%, #faf0d5c4 0, transparent 49%),
+    radial-gradient(ellipse at 80% 70%, #f4e3bb99 0, transparent 40%),
+    radial-gradient(ellipse at 65% 0, #a57c4133 0, transparent 60%),
+    linear-gradient(112deg, #c6a56e, #e5cf9f 13%, #ead7af 46%, #ddc293 80%, #bb945e);
+  box-shadow: inset 0 0 55px #54251966, inset 0 0 13px #20100d55, 0 0 23px #8b351f2b;
+}
+.parchment::after {
+  background:
+    radial-gradient(ellipse at 0% 0%, #32140fc2 0, #a04e2e73 2.5%, transparent 8%),
+    radial-gradient(ellipse at 100% 0%, #32140fc2 0, #a04e2e73 2.5%, transparent 8%),
+    radial-gradient(ellipse at 0% 100%, #32140fc2 0, #a04e2e73 3%, transparent 9%),
+    radial-gradient(ellipse at 100% 100%, #32140fc2 0, #a04e2e73 3%, transparent 9%),
+    radial-gradient(ellipse at 10% 13%, #7b572b16, transparent 7%),
+    radial-gradient(ellipse at 86% 42%, #8c5b3120, transparent 13%),
+    radial-gradient(ellipse at 23% 87%, #af77491c, transparent 10%);
+  box-shadow: inset 0 0 60px #5425195c;
+}
 .parchment::before { content: ''; position: absolute; z-index: 0; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 0 0, #20110bcc 0, #603a19ad 1.4%, #79502266 3%, transparent 7%), radial-gradient(ellipse at 100% 100%, #211209e6 0, #5c381abd 1%, #8b5c2a77 3%, transparent 9%), radial-gradient(ellipse at 100% 2%, #422511c7 0, #7c522666 2.5%, transparent 7%), radial-gradient(ellipse at 0 76%, #4a281499 0, #80501c44 1.5%, transparent 4.7%), radial-gradient(ellipse at 100% 35%, #5d351c8c 0, transparent 4%), radial-gradient(ellipse at 0 100%, #2c1a0eaa 0, #80542770 3%, transparent 7%), linear-gradient(90deg, #472610a1, #97652f47 1.4%, transparent 4.2%, transparent 96%, #7850214d 98.4%, #35200fa1), linear-gradient(0deg, #402411b3, #85582766 0.8%, transparent 2.9%, transparent 97.4%, #83582b66 99%, #3d2414b3); }
 .parchment::after { content: ''; position: absolute; z-index: 0; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 10% 13%, #7b572b16, transparent 7%), radial-gradient(ellipse at 86% 42%, #8c5b3120, transparent 13%), radial-gradient(ellipse at 23% 87%, #af77491c, transparent 10%); box-shadow: inset 0 0 50px #8b633c38; }
 .parchment__grain { position: absolute; z-index: 0; inset: 0; opacity: .33; pointer-events: none; background: repeating-linear-gradient(0deg, transparent 0 2px, #6d482b16 2px 3px, transparent 3px 5px), repeating-linear-gradient(91deg, #fff9e400 0 5px, #fff9e466 5px 6px, transparent 6px 9px), repeating-linear-gradient(12deg, transparent 0 17px, #8f6b3210 17px 18px, transparent 18px 31px); }
 .parchment__creases { position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent 49.1%, #74502d0c 49.6%, #a4773833 49.9%, #fff2c759 50.2%, transparent 50.7%), linear-gradient(180deg, transparent 32.9%, #80592b16 33.1%, #fdf1d640 33.3%, transparent 33.65%, transparent 67.2%, #80592b1c 67.45%, #fff4d95c 67.65%, transparent 67.9%); }
 .parchment__ink { position: relative; z-index: 2; }
+.parchment__rose { position: absolute; z-index: 3; right: 34px; bottom: 27px; width: 78px; height: 98px; overflow: visible; opacity: .58; transform: rotate(7deg); filter: drop-shadow(1px 2px 1px #29100c55); pointer-events: none; }
+.parchment__rose path { fill: none; stroke: #692b32; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
+.parchment__rose .parchment__rose-petal { fill: #712b39; stroke: #542027; stroke-width: .8; }
 .parchment__meta { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 43px; padding-bottom: 17px; border-bottom: 1px solid #7a5b3c3d; color: #826646; font-family: var(--sans, sans-serif); font-size: 8px; line-height: 1.6; letter-spacing: .14em; }
 .parchment__meta > :last-child { flex-shrink: 0; }
 .parchment h2 { font-family: var(--script, cursive); font-size: clamp(45px, 5.6vw, 62px); line-height: 1.1; font-weight: 400; margin: 0 0 25px; color: #55362d; transform: rotate(-2deg); }

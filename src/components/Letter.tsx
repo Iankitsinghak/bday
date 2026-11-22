@@ -74,6 +74,12 @@ export default function Letter() {
             >
               <div className="parchment-shadow">
                 <article className="parchment" aria-labelledby="letter-salutation">
+                  <svg className="parchment__rose" viewBox="0 0 120 150" aria-hidden="true">
+                    <path d="M62 73 C48 91 73 108 57 139 M59 111 C42 100 36 105 31 109 C43 111 48 117 59 121 M59 125 C76 113 85 117 91 122 C78 123 70 129 59 134" />
+                    <path d="M60 79 C39 79 36 61 49 52 C44 37 58 29 69 38 C82 30 95 44 87 56 C99 68 86 83 72 79 C69 89 58 89 55 81 Z" />
+                    <path d="M60 75 C48 70 49 59 58 56 C53 49 61 43 67 48 C74 42 81 50 76 57 C84 63 78 73 70 70 C68 77 62 79 60 75 Z" />
+                    <path className="parchment__rose-petal" d="M23 137 C16 130 21 122 28 124 C33 127 30 134 23 137 Z" />
+                  </svg>
                   <div className="parchment__grain" aria-hidden="true" />
                   <div className="parchment__creases" aria-hidden="true" />
                   <div className="parchment__ink">
