@@ -64,5 +64,5 @@ export default function Ambience({ stage }: { stage: string }) {
   }
 
   const title = stage === 'letter' ? 'LOVER' : 'YELLOW';
-  return <div className="ambience-wrap"><button className="sound-toggle" onClick={toggle} aria-label={`${playing ? 'Pause' : 'Play'} ${title}`} aria-pressed={playing}>{playing ? <Pause size={15}/> : <Play size={15}/>}<span>{title} <b>{playing ? 'ON' : 'OFF'}</b></span></button>{error && <span role="status" className="audio-error">Playback blocked. Tap play to start.</span>}</div>;
+  return <div className="ambience-wrap"><button className={`sound-toggle ${playing ? 'sound-toggle--playing' : ''}`} onClick={toggle} aria-label={`${playing ? 'Pause' : 'Play'} ${title}`} aria-pressed={playing}>{playing ? <Pause size={15}/> : <Play size={15}/>}<span className="sound-toggle__title">{title} <b>{playing ? 'ON' : 'OFF'}</b></span><span className="sound-wave" aria-hidden="true">{Array.from({ length: 17 }, (_, i) => <i key={i} style={{ '--bar': i } as React.CSSProperties}/>)}</span></button>{error && <span role="status" className="audio-error">Playback blocked. Tap play to start.</span>}</div>;
 }
