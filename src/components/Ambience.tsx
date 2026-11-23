@@ -77,5 +77,5 @@ export default function Ambience({ stage }: { stage: string }) {
   }
 
   const title = stage === 'letter' ? 'LOVER' : 'YELLOW';
-  return <div className="ambience-wrap"><button className="sound-toggle" onClick={toggle} aria-label={`${playing ? 'Pause' : 'Play'} ${title}`} aria-pressed={playing}>{playing ? <Pause size={15}/> : <Play size={15}/>}<span>{title} <b>{playing ? 'ON' : 'OFF'}</b></span></button>{error && <span role="status" className="audio-error">Playback blocked. Tap play to start.</span>}</div>;
+  return <div className="ambience-wrap"><button className={`sound-toggle ${playing ? 'sound-toggle--playing' : ''}`} onClick={toggle} aria-label={`${playing ? 'Pause' : 'Play'} ${title}`} aria-pressed={playing}>{playing ? <Pause size={15}/> : <Play size={15}/>}<svg className="guitarist" viewBox="0 0 46 42" aria-hidden="true"><circle className="guitarist__head" cx="13" cy="7" r="3.3"/><path className="guitarist__body" d="M14 11l3 10-4 8m4-8 8 4m-8-4-7 5-4 9m11-9 7 9"/><path className="guitarist__guitar" d="M23 23c-4-1-7 2-6 5 1 3 4 4 7 2l9-7-3-4zM26 24l12-12m-1-1 3 2"/><path className="guitarist__strings" d="m25 25 13-12m-11 14 13-12"/></svg><span>{title} <b>{playing ? 'ON' : 'OFF'}</b></span></button>{error && <span role="status" className="audio-error">Playback blocked. Tap play to start.</span>}</div>;
 }
