@@ -4,11 +4,11 @@ export const story = {
   author: 'solnyshko',
   birthday: '2026-11-24T00:00:00+05:30',
   openingQuote: [
-    'Every story has a beginning.',
-    'Ours started before you knew you were the main character.',
+    'You thought you were opening a book.',
+    'You were walking straight into my confession.',
   ],
-  yesPrompt: 'One question, Shalu. And I need an honest answer.',
-  yesDescription: 'Are you ready to discover what your favourite person has been planning?',
+  yesPrompt: 'One question, Shalu. Answer honestly.',
+  yesDescription: 'Are you ready to see what I have been planning for you?',
   noReactions: [
     'A plot twist already? We have barely reached the first page.',
     'That pause had excellent dramatic timing. I will give you that.',
@@ -16,14 +16,14 @@ export const story = {
   ],
   quizQuestions: [
     {
-      prompt: 'A Rina Kent novel. One free evening. Your next move?',
+      prompt: 'A Rina Kent novel and a free evening. What happens next?',
       options: [
         {
           label: 'One chapter. A very believable lie.',
           reaction: 'The alibi is weak. The commitment to the plot is impeccable.',
         },
         {
-          label: 'Judge the morally grey man. Continue reading.',
+          label: 'One dangerous man. One questionable decision. Suddenly it is 3 a.m. and you are still reading.',
           reaction: 'Excellent taste in fiction. A fully operational sense of judgment. We approve.',
         },
         {
@@ -50,7 +50,7 @@ export const story = {
       ],
     },
     {
-      prompt: 'Your perfect evening has room for one essential arrangement.',
+      prompt: 'Build your kind of evening. What belongs in it?',
       options: [
         {
           label: 'Coffee, dark chocolate, and a dangerous bookshelf.',
@@ -69,12 +69,12 @@ export const story = {
   ],
   quizResult: {
     title: 'The beautifully unreadable one.',
-    body: 'High standards. Excellent book taste. A weakness for coffee and dark chocolate that this investigation will respectfully overlook. Not easily impressed — which explains the author’s increasingly dramatic efforts.',
+    body: 'Good books, good coffee, and dark chocolate. High standards, too. You are not easy to impress, which may explain why the author has made such a production of this.',
   },
   truth: {
     eyebrow: 'Chapter VII · The truth',
     title: 'It was always about you.',
-    body: 'The mystery, the mischief, every carefully turned page. There was never another heroine waiting at the end of this story. Just you, Shalu — and an author who finally stopped keeping the affection between the lines.',
+    body: 'The mystery, the mischief, every carefully turned page. There was never another heroine waiting at the end of this story. It was you, Shalu. It has been you all along.',
   },
 };
 
@@ -84,7 +84,7 @@ export const chapterContent = [
     roman: 'I',
     title: 'The Obsession',
     subtitle: 'A perfectly respectable reading habit.',
-    body: 'Some people collect souvenirs. You have a taste for stories with questionable men, excellent tension, and no respect for a sensible bedtime. Rina Kent has a lot to answer for. So, apparently, do I.',
+    body: 'Some people collect souvenirs. You collect stories with dangerous men, impossible tension, and absolutely no respect for a sensible bedtime. Rina Kent may be partly responsible. I cannot claim to be entirely innocent either.',
     action: 'Read the margin note',
     reveal: 'I considered competing with your fictional favourites. Then I remembered: I can actually bring the coffee. A small but significant advantage.',
   },
@@ -93,7 +93,7 @@ export const chapterContent = [
     roman: 'II',
     title: 'The Temptation',
     subtitle: 'Bitter. Sweet. Difficult to put down.',
-    body: 'A cup of coffee. A square of dark chocolate. A sentence you read twice, although you understood it perfectly the first time. Some temptations do not need an elaborate introduction.',
+    body: 'Coffee, dark chocolate, and the promise of one more chapter. You know exactly how an evening like that disappears. Some temptations do not need an elaborate introduction.',
     action: 'Choose your temptation',
     reveal: 'For the record, I was going to say something impossibly smooth here. Then I pictured your smile and lost the sentence. Keep the chocolate. I need a moment.',
   },
@@ -102,7 +102,7 @@ export const chapterContent = [
     roman: 'III',
     title: 'The Crown',
     subtitle: 'No permission required.',
-    body: 'The heels are optional. The entrance is yours. There is something irresistible about a woman who chooses her own style, her own standards, and the exact moment she is done explaining either.',
+    body: 'The heels are optional. The entrance is yours. I love the way you choose your own style and standards, then let the room catch up. And yes, the light seems to linger on your clear, soft skin. I notice. I am trying to be subtle about it.',
     action: 'Claim your crown',
     reveal: 'Wear what makes you feel like yourself. Keep the opinions that are yours. A crown is much more interesting on someone who never needed it to know her worth.',
   },
@@ -111,9 +111,9 @@ export const chapterContent = [
     roman: 'IV',
     title: 'The Confession',
     subtitle: 'For once, no clever escape.',
-    body: 'It would be easy to fill these pages with beautiful things about you. It is harder, and more honest, to admit that I want to know the things a photograph cannot tell me. What matters to you. What makes you feel understood. The thoughts you choose to share.',
+    body: 'I could listen to you talk for hours. Your voice has a way of making even an ordinary story worth staying for. And when you cook, the whole place smells like somewhere I want to be. Still, I want to know more than the lovely things I can see and hear. I want to know what matters to you, and what makes you feel understood.',
     action: 'Read what I mean',
-    reveal: 'You do not have to be dazzling to deserve affection. You can be quiet, undecided, having an ordinary day. There is room for that Shalu in this story, too.',
+    reveal: 'Your voice, your cooking, the way you make a room feel warmer. I notice all of it. But you do not have to perform any of it to deserve affection. There is room for every version of you here.',
   },
   {
     id: 5,
@@ -140,7 +140,8 @@ export const letter = {
   salutation: 'My dear Shalu,',
   paragraphs: [
     'After all those locked doors and suspiciously dramatic chapter titles, here I am, out of clever disguises and places to hide. I made this for you because a birthday message felt too small for everything I wanted to say. And because even my feelings needed a plot twist before they would come clean.',
-    'You have a way of getting under my skin: the books you reach for, the style you make entirely your own, the little pleasures you refuse to defend. I love that about you. I love the way you can look composed while disappearing into some fictional disaster. I hope this year brings you excellent stories, good coffee, and dark chocolate you will share only when you feel like it.',
+    'You have a way of getting under my skin: the books you reach for, the style you make entirely your own, the little pleasures you refuse to defend. I love that about you. I love the way you can look composed while disappearing into some fictional disaster. And I would be lying if I said I had not noticed how clear and softly luminous your skin looks, especially when the light catches it. I hope this year brings you excellent stories, good coffee, and dark chocolate you will share only when you feel like it.',
+    'I could listen to you talk long after the rest of the room had gone quiet. Your voice makes even the smallest story feel worth hearing. And your cooking has a way of making a meal feel like an invitation to stay. Those are the details I carry with me: your voice, the food you make, the ease of being near you.',
     'We fight sometimes. We get sharp, stubborn, impossible. But when the heat fades, we do not keep a ledger of every cruel word or turn one bad night into a permanent sentence. We find our way back, sometimes with a quiet apology, sometimes with a look that says come here, and sometimes with all that restless anger turning into a different kind of fire behind a closed door. We know how to argue, and we know how to come back to each other, too.',
     'I still think about that first night in Kolkata, the City of Joy dressed up for Durga Puja, Laketown glowing with lights and noise, the whole city holding its breath around us. Outside, the drums and crowds and goddess lit streets. Between us, a tension neither of us knew how to name until we stopped pretending we could ignore it. The city kept celebrating, and the rest of the world fell away. Some memories do not ask permission before they become part of you. That one never did.',
     'And then there was February 14 at Eden Gardens, the two of us on a date to watch England play Scotland, with the whole stadium roaring around us. I had managed to plan the match, get us there, and somehow forget the flowers. A spectacular failure, really. You deserved a grand gesture, and I arrived empty handed, trusting the cricket and my company to save me. Let the record show that I remember it now, and that I still owe you those flowers. Even the best love stories need one fool who learns late.',
