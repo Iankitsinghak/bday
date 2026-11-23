@@ -13,7 +13,7 @@ const prompts: Record<number, { prompt: string; choices: string[] }> = {
   2: { prompt: 'Choose the more dangerous temptation.', choices: ['Coffee, black and uncompromising.', 'Dark chocolate, kept just out of reach.'] },
   3: { prompt: 'Choose the crown’s only rule.', choices: ['No explanation required.', 'Wear it like you invented it.'] },
   4: { prompt: 'This page asks for one honest choice.', choices: ['Read the quieter truth.', 'Keep it between these pages.'] },
-  5: { prompt: 'What rule should the author follow?', choices: ['Let the heroine write the ending.', 'Never underestimate her standards.'] },
+  5: { prompt: 'What rule should the author follow?', choices: ['Let the heroine write the ending.', 'Never mistake her kindness for weakness.'] },
   6: { prompt: 'Complete the final clue.', choices: ['The heroine is Shalu.', 'The author was never subtle.'] },
 };
 

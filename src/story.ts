@@ -62,14 +62,14 @@ export const story = {
         },
         {
           label: 'All of the above. I do not edit good taste.',
-          reaction: 'Case closed. Even your compromises have high standards.',
+          reaction: 'Case closed. Even your compromises leave room for kindness.',
         },
       ],
     },
   ],
   quizResult: {
     title: 'The beautifully unreadable one.',
-    body: 'Good books, good coffee, and dark chocolate. High standards, too. You are not easy to impress, which may explain why the author has made such a production of this.',
+    body: 'Good books, good coffee, and dark chocolate. You have a rare way of meeting people with patience and understanding, even when you could easily judge them. The author has noticed. He is trying to deserve it.',
   },
   truth: {
     eyebrow: 'Chapter VII · The truth',
@@ -102,7 +102,7 @@ export const chapterContent = [
     roman: 'III',
     title: 'The Crown',
     subtitle: 'No permission required.',
-    body: 'The heels are optional. The entrance is yours. I love the way you choose your own style and standards, then let the room catch up. And yes, the light seems to linger on your clear, soft skin. I notice. I am trying to be subtle about it.',
+    body: 'The heels are optional. The entrance is yours. I love the way you choose your own style and stay generous with people, even when they take time to understand. And yes, the light seems to linger on your clear, soft skin. I notice. I am trying to be subtle about it.',
     action: 'Claim your crown',
     reveal: 'Wear what makes you feel like yourself. Keep the opinions that are yours. A crown is much more interesting on someone who never needed it to know her worth.',
   },
