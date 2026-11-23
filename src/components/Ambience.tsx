@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { Pause, Play } from 'lucide-react';
+import { Disc3 } from 'lucide-react';
+type Lyric = { time: number; words: { time: number; text: string }[] };
 
 export default function Ambience({ stage }: { stage: string }) {
   const [playing, setPlaying] = useState(false);
   const [error, setError] = useState(false);
+  const [lyrics, setLyrics] = useState<Lyric[]>([]);
+  const [lyricIndex, setLyricIndex] = useState(-1);
+  const [wordIndex, setWordIndex] = useState(-1);
   const audio = useRef<HTMLAudioElement | null>(null);
   const savedTimes = useRef<Record<string, number>>({});
 
@@ -19,6 +23,48 @@ export default function Ambience({ stage }: { stage: string }) {
       audio.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    const file = stage === 'letter' ? '/lover-lyrics.lrc' : '/yellow-lyrics.lrc';
+    fetch(file).then(r => r.text()).then(text => {
+      const rows: Lyric[] = [];
+      for (const line of text.split(/\r?\n/)) {
+        const match = line.match(/^\[(\d+):(\d+(?:\.\d+)?)\](.*)$/);
+        if (!match) continue;
+        const lineTime = Number(match[1]) * 60 + Number(match[2]);
+        let nextTime = lineTime;
+        const words = match[3].split(/(<\d+:\d+(?:\.\d+)?>)/).flatMap(part => {
+          const stamp = part.match(/^<(\d+):(\d+(?:\.\d+)?)>$/);
+          if (stamp) { nextTime = Number(stamp[1]) * 60 + Number(stamp[2]); return []; }
+          return part.trim().split(/\s+/).filter(Boolean).map(text => ({ time: nextTime, text }));
+        });
+        if (words.length) rows.push({ time: lineTime, words });
+      }
+      if (!cancelled) { setLyrics(rows); setLyricIndex(-1); }
+    }).catch(() => { if (!cancelled) setLyrics([]); });
+    return () => { cancelled = true; };
+  }, [stage === 'letter']);
+
+  useEffect(() => {
+    const player = audio.current;
+    if (!player) return;
+    const sync = () => {
+      let current = -1;
+      for (let i = 0; i < lyrics.length; i += 1) {
+        if (lyrics[i].time <= player.currentTime) current = i;
+        else break;
+      }
+      setLyricIndex(current);
+      const words = current >= 0 ? lyrics[current].words : [];
+      let activeWord = -1;
+      for (let i = 0; i < words.length; i += 1) { if (words[i].time <= player.currentTime) activeWord = i; else break; }
+      setWordIndex(activeWord);
+    };
+    player.addEventListener('timeupdate', sync);
+    sync();
+    return () => player.removeEventListener('timeupdate', sync);
+  }, [lyrics]);
 
   useEffect(() => {
     const player = audio.current;
@@ -77,5 +123,5 @@ export default function Ambience({ stage }: { stage: string }) {
   }
 
   const title = stage === 'letter' ? 'LOVER' : 'YELLOW';
-  return <div className="ambience-wrap"><button className={`sound-toggle ${playing ? 'sound-toggle--playing' : ''}`} onClick={toggle} aria-label={`${playing ? 'Pause' : 'Play'} ${title}`} aria-pressed={playing}>{playing ? <Pause size={15}/> : <Play size={15}/>}<svg className="guitarist" viewBox="0 0 46 42" aria-hidden="true"><circle className="guitarist__head" cx="13" cy="7" r="3.3"/><path className="guitarist__body" d="M14 11l3 10-4 8m4-8 8 4m-8-4-7 5-4 9m11-9 7 9"/><path className="guitarist__guitar" d="M23 23c-4-1-7 2-6 5 1 3 4 4 7 2l9-7-3-4zM26 24l12-12m-1-1 3 2"/><path className="guitarist__strings" d="m25 25 13-12m-11 14 13-12"/></svg><span>{title} <b>{playing ? 'ON' : 'OFF'}</b></span></button>{error && <span role="status" className="audio-error">Playback blocked. Tap play to start.</span>}</div>;
+  return <div className="ambience-wrap"><button className={`sound-toggle ${playing ? 'sound-toggle--playing' : ''}`} onClick={toggle} aria-label={`${playing ? 'Pause' : 'Play'} ${title}`} aria-pressed={playing}><Disc3 className="player-disc" size={27} aria-hidden="true"/><span>{title} <b>{playing ? 'ON' : 'OFF'}</b></span></button><span className="music-lyric" aria-live="polite">{playing && lyricIndex >= 0 ? lyrics[lyricIndex].words.map((word, index) => <span key={`${word.time}-${index}`} className={index === wordIndex ? 'lyric-word--current' : ''}>{word.text}{index < lyrics[lyricIndex].words.length - 1 ? ' ' : ''}</span>) : ''}</span>{error && <span role="status" className="audio-error">Playback blocked. Tap play to start.</span>}</div>;
 }
